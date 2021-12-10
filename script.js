@@ -3,8 +3,8 @@ $(document).ready (function () {
   var leftNum;
   var rightNum;
   var question;
-  var score = 0;
-  
+  var currentScore = 0;
+  var scoreArr = [];
   
   var questionGenerator = function () {
     leftNum = Math.floor(Math.random() * 10);
@@ -13,20 +13,27 @@ $(document).ready (function () {
     $('#question').html(questionDisplay);
   
     question = leftNum + rightNum;
-    
   };
   
-  var currentScoreCount = function () {
-      score++;
-      $('#currentScore').html(score);
-  }
+  var currentScoreCount = function (score) {
+      currentScore +=score;
+      $('#currentScore').html(currentScore);
+  };
+  
+  var highScoreCount = function () {
+    scoreArr.push(currentScore);
+    var highScore = Math.max.apply(null, scoreArr);
+    $('#highScore').html(highScore);
+  };
+  
   
   $('#answer').on('keyup', function () {
     if ($(this).val() == question) {
+      updateTimeLeft(1);
       $(this).val('');
-      currentScoreCount();
+      currentScoreCount(1);
       questionGenerator();
-      stopTimer();
+      
     }
   });
   
@@ -37,11 +44,22 @@ $(document).ready (function () {
   var startTimer = function () {
     if (!timer) {
       timer = setInterval(function () {
-        timeLeft--;
-        timeDisplay.html(timeLeft);
+        if (timeLeft === 0) {
+          updateTimeLeft(10);
+          highScoreCount();
+          currentScoreCount(-currentScore);
+          stopTimer();
+          return;
+        }
+        updateTimeLeft(-1);
       }, 1000);
       }
   };
+  
+  var updateTimeLeft = function (sec) {
+    timeLeft += sec;
+    timeDisplay.html(timeLeft);
+  }
   
   var stopTimer = function () {
     window.clearInterval(timer);
@@ -56,7 +74,5 @@ $(document).ready (function () {
   
   
   questionGenerator();
-  
-
   
   });
