@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>10 Sec Maths Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="position-fixed" id="background">
+      </div>
+      <div class="position-fixed" id="scoreDisplay">
+        <p>Current Score: <span id="currentScore"></span>
+        <p>High Score: <span id="highScore"></span>
+        
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+          <h1 class="py-4 text-center">10 Sec Maths Game</h1>
+          <div class="py-2 text-center">
+            <h2 id="timer"> 10 </h2>
+            <p>second left</p>
+          </div>
+          <div class="py-2 text-center">
+            <h2 id="question"> 5 + 5 </h2>
+            <input class="pt-1 mt-2" id="answer" type="number" placeholder="answer" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
