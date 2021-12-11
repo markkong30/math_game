@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
@@ -21,39 +20,54 @@
 		<div class="position-fixed" id="background">
 		</div>
 		<div class="d-none d-md-block position-fixed" id="scoreDisplay">
-			<p>Current Score: <span class="currentScore"></span>
-        <p>High Score: <span class="highScore"></span>
-      </div>
+			<p>Current Score: <span class="currentScore"></span></p>
+      <p>High Score: <span class="highScore"></span></p>
+    </div>
   
-      <div class="row justify-content-center align-items-center">
-        <div class="col-12 col-md-8">
-          <h1 class="py-4 text-center">10 Sec Maths Game</h1>
-          <div class="py-2 text-center">
-            <h2 id="timer"> 10 </h2>
-            <p>seconds left</p>
-          </div>
-
-          <div class="py-2 text-center">
-            <h2 id="question"> 5 + 5 </h2>
-            <input class="pt-1 mt-2" id="answer" type="number" placeholder="answer" />
-          </div>
-
-          <div class="py-3 text-center" id="box">
-            <input id="plus" type="checkbox" checked/>
-            <span> + </span>
-            <input id="minus" type="checkbox" />
-            <span> - </span>
-            <input id="times" type="checkbox" />
-            <span> * </span>
-            <input id="divide" type="checkbox" />
-            <span> / </span>
-          </div>
-
-          <div class="d-md-none py-3 text-center" id="xsScore">
-            <p>Current Score: <span class="currentScore"></span>
-            <p>High Score: <span class="highScore"></span>
+    <div class="row justify-content-center" id="game">
+      <div class="col-10 col-md-8">
+        <h1 class="py-4 text-center">10 Sec Maths Game</h1>
+        <div class="py-2 text-center">
+          <h2 id="timer"> 10 </h2>
+          <p>seconds left</p>
         </div>
       </div>
+      <div class="col-10 col-md-8">
+        <div class="py-2 text-center">
+          <h2 id="question"> 5 + 5 </h2>
+          <input class="pt-1 mt-2" id="answer" type="number" placeholder="answer" />
+          </div>
+      </div>
+
+      <div class="col-10 col-md-8">
+        <div class="py-3 text-center" id="box">
+          <input id="plus" type="checkbox" checked/>
+          <span> + </span>
+          <input id="minus" type="checkbox" />
+          <span> - </span>
+          <input id="times" type="checkbox" />
+          <span> &times; </span>
+          <input id="divide" type="checkbox" />
+          <span> &div; </span>
+        </div>
+      </div>
+
+      <div class="col-10 col-md-8">
+        <div class="d-md-none py-3 text-center" id="xsScore">
+          <p>Current Score: <span class="currentScore"></span></p>
+          <p>High Score: <span class="highScore"></span></p>
+        </div>
+      </div>
+
+      <div class="col-10 col-md-8">
+        <form class="py-3 text-center" id="numberLimit">
+          <input id="numberInput" type="number" min="10" max="50" placeholder="Choose a number limit between 10 to 50." />
+          <button type="submit" class="btn btn-primary btn-sm ml-1 ok">OK</button> 
+          <p class="py-2"> Number Limit : <span id="currentLimit"> 10</span></p>
+        </form>
+      </div>
+       
     </div>
-  </body>
+  </div>
+ </body>
 </html>

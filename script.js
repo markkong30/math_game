@@ -1,35 +1,55 @@
 $(document).ready(function () {
 
-  var leftNum;
-  var rightNum;
   var question;
   var currentScore = 0;
   var scoreArr = [];
+  var numberChosen = 10;
 
   var types = ['+'];
   var selected;
   var selectType = function () {
-    selected = (_.sample(types, 1)).toString();
+    selected = (_.sample(types)).toString();
     return selected;
   };
 
   var questionGenerator = function () {
-    leftNum = Math.floor(Math.random() * 10);
-    rightNum = Math.floor(Math.random() * 10);
-    var questionDisplay = leftNum + ' ' + selectType() + ' ' + rightNum;
-    $('#question').html(questionDisplay);
+    var leftNum = Math.ceil(Math.random() * numberChosen);
+    var rightNum = Math.ceil(Math.random() * numberChosen);
+    selectType();
+
+    if (selected == '-') {
+      if (leftNum <= rightNum) {
+        return questionGenerator();
+      };
+    } else if (selected == '/') {
+      if (leftNum % rightNum !== 0 || leftNum <= rightNum || rightNum ==1) {
+        return questionGenerator();
+      } else if (selected == '*') {
+        if (leftNum ==1 || rightNum ==1) {
+          return questionGenerator();
+        }
+      }
+    };
 
     switch (selected) {
       case "+":
+        var questionDisplay = leftNum + ' ' + selected + ' ' + rightNum;
+        $('#question').html(questionDisplay);
         question = leftNum + rightNum;
         break;
       case "-":
+        var questionDisplay = leftNum + ' ' + selected + ' ' + rightNum;
+        $('#question').html(questionDisplay);
         question = leftNum - rightNum;
         break;
       case "*":
+        var questionDisplay = leftNum + ' &times; ' + rightNum;
+        $('#question').html(questionDisplay);
         question = leftNum * rightNum;
         break;
       case "/":
+        var questionDisplay = leftNum + ' &div; ' + rightNum;
+        $('#question').html(questionDisplay);
         question = leftNum / rightNum;
         break;
     }
@@ -49,7 +69,6 @@ $(document).ready(function () {
 
   $('#answer').on('keyup', function () {
     if ($(this).val() == question) {
-
       check();
       updateTimeLeft(1);
       $(this).val('');
@@ -68,6 +87,7 @@ $(document).ready(function () {
         if (timeLeft === 0) {
           updateTimeLeft(10);
           highScoreCount();
+          alert('Times up! Your score is ' + currentScore + '!');
           currentScoreCount(-currentScore);
           stopTimer();
           return;
@@ -80,7 +100,7 @@ $(document).ready(function () {
   var updateTimeLeft = function (sec) {
     timeLeft += sec;
     timeDisplay.html(timeLeft);
-  }
+  };
 
   var stopTimer = function () {
     window.clearInterval(timer);
@@ -90,9 +110,6 @@ $(document).ready(function () {
   $('#answer').on('keydown', function () {
     startTimer();
   });
-
-
-
 
   var check = function () {
     types.length = 0;
@@ -110,6 +127,12 @@ $(document).ready(function () {
     };
   }
 
+  $('#numberLimit').on('submit', function (e) {
+    e.preventDefault();
+    $('#currentLimit').html($('#numberInput').val());
+    numberChosen = $('#numberInput').val();
+    $('#numberInput').val('');
+  });
 
   questionGenerator();
 
