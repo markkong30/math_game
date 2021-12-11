@@ -22,14 +22,14 @@ $(document).ready(function () {
         return questionGenerator();
       };
     } else if (selected == '/') {
-      if (leftNum % rightNum !== 0 || leftNum <= rightNum || rightNum ==1) {
+      if (leftNum % rightNum !== 0 || leftNum <= rightNum || rightNum == 1) {
         return questionGenerator();
-      } else if (selected == '*') {
-        if (leftNum ==1 || rightNum ==1) {
+      } 
+    } else if (selected == '*') {
+        if (leftNum == 1 || rightNum == 1) {
           return questionGenerator();
-        }
+        };
       }
-    };
 
     switch (selected) {
       case "+":

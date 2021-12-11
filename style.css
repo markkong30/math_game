@@ -29,7 +29,8 @@ button.ok {
    margin-top: -5px;
 }
 
-body {
+#game {
   overflow-x: hidden;
+  margin-top:50px;
 }
 
